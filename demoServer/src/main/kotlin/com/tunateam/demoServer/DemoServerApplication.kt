@@ -29,14 +29,14 @@ class DemoServerApplication {
 }
 
 fun main(args: Array<String>) {
-    //runApplication<DemoServerApplication>(*args)
+    runApplication<DemoServerApplication>(*args)
 
 
     /**
      * 스프링 부트 내장 서버 없이 톰캣 객체만 가지고 서버를 만듬.
      * 이런 비슷한 설정이 AutoConfigure 와 관련이 있다.
      */
-    val tomcat = Tomcat()
+    /*val tomcat = Tomcat()
     tomcat.setPort(8080)
 
     val context = tomcat.addContext("/", "/")
@@ -56,5 +56,5 @@ fun main(args: Array<String>) {
     context.addServletMappingDecoded("/hello", servletName)
 
     tomcat.start()
-    tomcat.server.await()
+    tomcat.server.await()*/
 }
