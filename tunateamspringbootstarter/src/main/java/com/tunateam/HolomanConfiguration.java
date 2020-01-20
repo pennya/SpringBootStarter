@@ -1,6 +1,7 @@
 package com.tunateam;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,14 +14,15 @@ import org.springframework.context.annotation.Configuration;
  * mavenLocal() 을 이용하여 gradle project 에서 implementation 할 수 있다.
  */
 @Configuration
+@EnableConfigurationProperties(HolomanProperties.class)
 public class HolomanConfiguration {
 
     @Bean
     @ConditionalOnMissingBean // 이 타입에 대한 Bean 이 없을 때만 아래 코드가 Bean 에 등록된다.
-    public Holoman holoman() {
+    public Holoman holoman(HolomanProperties properties) {
         Holoman holoman = new Holoman();
-        holoman.setHowLong(5);
-        holoman.setName("JHKIM");
+        holoman.setHowLong(properties.getHowLong());
+        holoman.setName(properties.getName());
         return holoman;
     }
 

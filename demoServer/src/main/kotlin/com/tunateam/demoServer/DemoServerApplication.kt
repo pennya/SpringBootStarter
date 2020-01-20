@@ -15,13 +15,13 @@ class DemoServerApplication {
      *
      * @ConditionalOnMissingBean 세팅이 되있으므로 @ComponentScan 로 스캔된 Bean 은 무시된다.
      */
-    @Bean
+    /*@Bean
     fun holoman(): Holoman {
         return Holoman().apply {
             name = "TestMan"
             howLong = 60
         }
-    }
+    }*/
 }
 
 fun main(args: Array<String>) {
