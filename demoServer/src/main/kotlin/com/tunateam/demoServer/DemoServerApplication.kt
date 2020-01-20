@@ -12,6 +12,8 @@ class DemoServerApplication {
      * @ComponentScan 으로 먼저 스캔해서 Bean 으로 등록하고
      * @EnableAutoConfiguration 으로 dependency 를 스캔해서 Bean 으로 등록하므로
      * 아래 정의 된 Bean 은 오버라이드 되어 나중에 등록된 Bean 으로 설정된다.
+     *
+     * @ConditionalOnMissingBean 세팅이 되있으므로 @ComponentScan 로 스캔된 Bean 은 무시된다.
      */
     @Bean
     fun holoman(): Holoman {
