@@ -12,9 +12,10 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+@DataJpaTest
 class AccountRepositoryTest {
 
     @Autowired
@@ -34,5 +35,19 @@ class AccountRepositoryTest {
             System.out.println(metaData.getDriverName());
             System.out.println(metaData.getUserName());
         }
+
+        Account account = new Account();
+        account.setUsername("KIM");
+        account.setPassword("1234");
+
+        Account newAccount = accountRepository.save(account);
+
+        assertThat(newAccount).isNotNull();
+        Account existingAccount = accountRepository.findByUsername(newAccount.getUsername());
+        assertThat(existingAccount).isNotNull();
+
+        Account nonExistingAccount = accountRepository.findByUsername("testUserName");
+        assertThat(nonExistingAccount).isNotNull();
+
     }
 }
