@@ -1,6 +1,7 @@
 package com.example.neo4j;
 
 import com.example.neo4j.account.Account;
+import com.example.neo4j.account.Role;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class Neo4jRunner implements ApplicationRunner {
         Account account = new Account();
         account.setEmail("rlawlgns077@naver.com");
         account.setUsername("Duzi");
+
+        Role role = new Role();
+        role.setName("admin");
+
+        account.getRoles().add(role);
 
         Session session = sessionFactory.openSession();
         session.save(account);
