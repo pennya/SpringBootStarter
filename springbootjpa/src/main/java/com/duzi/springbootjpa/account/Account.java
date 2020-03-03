@@ -18,6 +18,8 @@ public class Account {
 
     private String email;
 
+    private boolean active;
+
     public Long getId() {
         return id;
     }
@@ -50,6 +52,14 @@ public class Account {
         this.email = email;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,11 +68,12 @@ public class Account {
         return Objects.equals(id, account.id) &&
                 Objects.equals(username, account.username) &&
                 Objects.equals(password, account.password) &&
-                Objects.equals(email, account.email);
+                Objects.equals(email, account.email) &&
+                Objects.equals(active, account.active);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, email);
+        return Objects.hash(id, username, password, email, active);
     }
 }
