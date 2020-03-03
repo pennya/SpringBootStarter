@@ -1,6 +1,7 @@
 package com.example.neo4j;
 
 import com.example.neo4j.account.Account;
+import com.example.neo4j.account.AccountRepository;
 import com.example.neo4j.account.Role;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
@@ -13,22 +14,20 @@ import org.springframework.stereotype.Component;
 public class Neo4jRunner implements ApplicationRunner {
 
     @Autowired
-    SessionFactory sessionFactory;
+    AccountRepository accountRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
         Account account = new Account();
-        account.setEmail("rlawlgns077@naver.com");
-        account.setUsername("Duzi");
+        account.setEmail("test.rlawlgns077@naver.com");
+        account.setUsername("KIM");
 
         Role role = new Role();
-        role.setName("admin");
+        role.setName("user");
 
         account.getRoles().add(role);
 
-        Session session = sessionFactory.openSession();
-        session.save(account);
-        sessionFactory.close();
+        accountRepository.save(account);
 
         System.out.println("finished");
     }
